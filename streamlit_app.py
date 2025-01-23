@@ -5,12 +5,15 @@ import requests
 import logging
 import httpx
 import json
+import uuid
 
 BASE_API_URL = "http://h3875247.eero.online:7860"
 LANGFLOW_ID = "8994f052-0cf8-4676-9e38-8da0b7ec52aa"
 FLOW_ID = "83a184b6-ee79-449e-a475-3fc274877330"
 APPLICATION_TOKEN = "AstraCS:tFXyGCzeKxfELaHIzuIUydKS:7e87cf958201164e9e6c3f14b35f488f968798e42fb53189cf8eaec4ef5f0625"
 ENDPOINT = ""
+
+SESSION_ID = str(uuid.uuid4())
 
 TWEAKS = {
   "Agent-SdiBn": {},
@@ -52,6 +55,7 @@ def run_flow(message: str,
         "input_value": message,
         "output_type": output_type,
         "input_type": input_type,
+        "session_id": SESSION_ID
     }
     headers = None
     if tweaks:
